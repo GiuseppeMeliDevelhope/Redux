@@ -3,13 +3,20 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import CounterReducer from './CounterSlice';
+import todosSlice from './todosSlice';
 import App from './App';
 
 const store = configureStore({
   reducer: {
     counter: CounterReducer,
+    todos: todosSlice
   },
 });
+
+store.subscribe(() => {
+  console.log('State updated:', store.getState());
+});
+
 
 ReactDOM.render(
   <Provider store={store}>
